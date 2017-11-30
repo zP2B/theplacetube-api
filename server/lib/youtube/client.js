@@ -66,18 +66,16 @@ exports.getVideos = function(latitude, longitude, radius, params){
     params
   );
 
-  console.log(youtubeParams);
   return this.getVideosIds(youtubeParams)
   .then(function(searchList) {
     let videoId = [];
-    console.log(searchList);
     searchList.items.map(function (item) {
       videoId.push(item.id.videoId);
     })
     let res = {};
     return this.getVideosFromIds(videoId.join(',')).then(function(videos){
       res.nextPageToken = searchList.nextPageToken;
-      res.searchList = searchList.pageInfo;
+      res.pageInfo = searchList.pageInfo;
       res.videos = videos;
       return res;
     });
