@@ -16,14 +16,11 @@ module.exports = function(Videoslist) {
         const nextPageToken = res.nextPageToken;
         const pageInfo = res.pageInfo;
         const videos = Videoslist.app.models.Video.initFromYoutubeCollection(videosYoutube);
-        console.log(videos);
-
         const videosList = {
-          videos: Videoslist.app.models.Video.initFromYoutubeCollection(videosYoutube),
+          videos: videos,
           nextPageToken: nextPageToken,
           pageInfo: pageInfo
         }
-        console.log(videosList.nextPageToken);
         return callback(null, videosList)
       })
       .catch(function (error) {
