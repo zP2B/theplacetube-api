@@ -8,7 +8,7 @@ nconf
   .env()
   .file({file: './config.json'});
 
-if (!(nconf.get('google_api_key'))){
+if (!(nconf.get('google_api_key'))) {
   throw new Error('No google api key provided');
 }
 
@@ -17,7 +17,6 @@ if (!(nconf.get('google_api_key'))){
  * @param params
  */
 exports.getVideosIds = function(params) {
-  console.log(params)
   return new Promise((resolve, reject) => {
     youtube.search.list(
       Object.assign(
@@ -38,7 +37,6 @@ exports.getVideosIds = function(params) {
       }
     );
   });
-
 };
 
 /**
@@ -60,24 +58,24 @@ exports.getVideosFromIds = function(id) {
   });
 };
 
-exports.getVideos = function(latitude, longitude, radius, params){
+exports.getVideos = function(latitude, longitude, radius, params) {
   const youtubeParams = Object.assign(
     {location: latitude + ',' + longitude, locationRadius: radius + 'm'},
     params
   );
 
   return this.getVideosIds(youtubeParams)
-  .then(function(searchList) {
-    let videoId = [];
-    searchList.items.map(function (item) {
-      videoId.push(item.id.videoId);
-    })
-    let res = {};
-    return this.getVideosFromIds(videoId.join(',')).then(function(videos){
-      res.nextPageToken = searchList.nextPageToken;
-      res.pageInfo = searchList.pageInfo;
-      res.videos = videos;
-      return res;
-    });
-  }.bind(this));
+    .then(function(searchList) {
+      let videoId = [];
+      searchList.items.map(function(item) {
+        videoId.push(item.id.videoId);
+      });
+      let res = {};
+      return this.getVideosFromIds(videoId.join(',')).then(function(videos) {
+        res.nextPageToken = searchList.nextPageToken;
+        res.pageInfo = searchList.pageInfo;
+        res.videos = videos;
+        return res;
+      });
+    }.bind(this));
 };
