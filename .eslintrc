@@ -1,3 +1,8 @@
 {
-  "extends": "loopback"
+  "parserOptions": {
+    "ecmaVersion": 6
+  },
+  "rules": {
+    "space-before-function-paren": ["warn", "never"]
+  }
 }
