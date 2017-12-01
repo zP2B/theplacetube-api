@@ -1,0 +1,64 @@
+{
+  "name": "VideosList",
+  "plural": "VideosLists",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "name": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {
+    "search": {
+      "accepts": [
+        {
+          "arg": "latitude",
+          "type": "number",
+          "required": true,
+          "description": "latitude of geolocation",
+          "http": {
+            "source": "query"
+          }
+        },
+        {
+          "arg": "longitude",
+          "type": "number",
+          "required": true,
+          "description": "longitude of geolocation",
+          "http": {
+            "source": "query"
+          }
+        },
+        {
+          "arg": "radius",
+          "type": "number",
+          "required": true,
+          "description": "distance from geolocation provided",
+          "http": {
+            "source": "query"
+          }
+        }
+      ],
+      "returns": [
+        {
+          "type": "array",
+          "root": true,
+          "description": "Array of returned videos"
+        }
+      ],
+      "description": "Allow to get videos by location and radius from youtube",
+      "http": [
+        {
+          "path": "/search",
+          "verb": "get"
+        }
+      ]
+    }
+  }
+}
