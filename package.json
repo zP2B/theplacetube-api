@@ -27,11 +27,12 @@
   "devDependencies": {
     "eslint": "^3.17.1",
     "eslint-config-loopback": "^8.0.0",
+    "mocha": "^4.0.1",
     "nsp": "^2.1.0"
   },
   "repository": {
-    "type": "",
-    "url": ""
+    "type": "git",
+    "url": "https://github.com/zP2B/theplacetube-api.git"
   },
   "license": "UNLICENSED",
   "description": "theplacetube-api"
